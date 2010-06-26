@@ -101,7 +101,7 @@ public abstract class BaseApplication implements Application {
 	}
 	
 	protected Document bodyAsXML(Environment env) {
-		CharBuffer buffer = Charset.forName("UTF-8").decode((ByteBuffer) env.body().flip());
+		CharBuffer buffer = Charset.forName("UTF-8").decode((ByteBuffer) env.body());
 		return SNAX.parse(buffer);
 	}
 }
