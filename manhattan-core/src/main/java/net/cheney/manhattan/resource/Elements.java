@@ -18,6 +18,8 @@
 
 package net.cheney.manhattan.resource;
 
+import java.net.URI;
+import java.net.URLEncoder;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Date;
@@ -153,7 +155,7 @@ public final class Elements {
 	public static class HREF extends Element {
 
 		public HREF(Path path) {
-			super(HREF, new Text(path.toString()));
+			super(HREF, new Text(path.toURI().toASCIIString()));
 		}
 		
 	}

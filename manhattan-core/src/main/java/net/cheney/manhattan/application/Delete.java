@@ -19,12 +19,9 @@ public class Delete extends BaseApplication {
 		if (resource.isLocked()) {
 			return clientErrorLocked();
 		}
+		
 		if (resource.exists()) {
-			if (resource.isLocked()) {
-				return clientErrorLocked();
-			} else {
-				return delete(resource);
-			}
+			return delete(resource);
 		} else {
 			return clientErrorNotFound();
 		}

@@ -204,7 +204,9 @@ public class FileResource implements Resource {
 		File f = new File(file, name);
 		FileOutputStream fos = new FileOutputStream(f);
 		FileChannel fc = fos.getChannel();
-		fc.write((ByteBuffer) buffer);
+		fc.position(0);
+		int written = fc.write((ByteBuffer) buffer);
+		if (written != buffer.limit()) throw new IllegalStateException();
 		fc.close();
 		return new FileResource(providor, f);
 	}
