@@ -76,7 +76,7 @@ public class Responses {
 
 			@Override
 			public Response call(Environment env) {
-				return Response.builder(Status.SERVER_ERROR_INTERNAL).body(t.toString()).build();
+				return Response.builder(Status.SERVER_ERROR_INTERNAL).body(UTF_8.encode(t.toString())).build();
 			}
 			
 		};

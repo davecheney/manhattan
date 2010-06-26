@@ -73,7 +73,7 @@ public abstract class BaseApplication implements Application {
 	}
 
 	public static Response serverErrorInternal(final Throwable t) {
-		return Response.builder(Status.SERVER_ERROR_INTERNAL).body(t.toString()).build();
+		return Response.builder(Status.SERVER_ERROR_INTERNAL).body(CHARSET_UTF_8.encode(t.toString())).build();
 	}
 
 	public static Response clientErrorConflict() {
