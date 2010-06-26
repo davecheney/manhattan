@@ -29,7 +29,7 @@ public class Put extends BaseApplication {
 		
 		try {
 			if(env.hasBody()) {
-				parent.create(resource.name(), (ByteBuffer) env.body().flip());
+				parent.create(resource.name(), (ByteBuffer) env.body());
 			} else {
 				parent.create(resource.name(), ByteBuffer.allocate(0));
 			}
