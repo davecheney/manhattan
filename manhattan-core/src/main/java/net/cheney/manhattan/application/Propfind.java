@@ -44,12 +44,17 @@ public class Propfind extends BaseApplication {
 
 	@Override
 	public Response call(Environment env) {
-		try {
-			List<RESPONSE> propfind = propfind(getSearchProperties(env), resolveResource(env), depth(env));
-			return successMultiStatus(multistatus(propfind));
-		} catch (IllegalArgumentException e) {
-			LOG.error("Unable to parse PROPFIND xml body", e);
-			return clientErrorBadRequest();
+		Resource resource = resolveResource(env);
+		if(resource.exists()) {
+			try {
+				List<RESPONSE> propfind = propfind(getSearchProperties(env), resource, depth(env));
+				return successMultiStatus(multistatus(propfind));
+			} catch (IllegalArgumentException e) {
+				LOG.error("Unable to parse PROPFIND xml body", e);
+				return clientErrorBadRequest();
+			}
+		} else {
+			return clientErrorNotFound();
 		}
 	}
 	
