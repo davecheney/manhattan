@@ -10,6 +10,8 @@ import static net.cheney.manhattan.resource.Elements.response;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.apache.log4j.Logger;
+
 import net.cheney.cocktail.application.Environment;
 import net.cheney.cocktail.application.Environment.Depth;
 import net.cheney.cocktail.message.Response;
@@ -29,6 +31,8 @@ import com.google.common.collect.Iterables;
 
 public class Propfind extends BaseApplication {
 	
+	private static final Logger LOG = Logger.getLogger(Propfind.class);
+	
 	private static final Iterable<QName> ALL_PROPS = newArrayList(
 			Property.CREATION_DATE, Property.DISPLAY_NAME,
 			Property.GET_CONTENT_LENGTH, Property.GET_LAST_MODIFIED,
@@ -44,6 +48,7 @@ public class Propfind extends BaseApplication {
 			List<RESPONSE> propfind = propfind(getSearchProperties(env), resolveResource(env), depth(env));
 			return successMultiStatus(multistatus(propfind));
 		} catch (IllegalArgumentException e) {
+			LOG.error("Unable to parse PROPFIND xml body", e);
 			return clientErrorBadRequest();
 		}
 	}

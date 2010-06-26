@@ -7,7 +7,6 @@ import java.net.InetSocketAddress;
 import net.cheney.cocktail.application.Application;
 import net.cheney.cocktail.httpsimple.HttpServer;
 import net.cheney.cocktail.middleware.CommonLogger;
-import net.cheney.cocktail.middleware.ResponseDebugger;
 import net.cheney.manhattan.application.DavApplication;
 
 import org.apache.log4j.BasicConfigurator;
@@ -22,7 +21,7 @@ public class Startup {
 		root.mkdir();
 		Application dav = new DavApplication(root);
 		dav = new CommonLogger(dav, Logger.getRootLogger());
-		dav = new ResponseDebugger(dav, System.out);
+//		dav = new ResponseDebugger(dav, Logger.getRootLogger());
 		
 		HttpServer.builder(dav).bind(new InetSocketAddress(8080)).build().start(4);
 	}

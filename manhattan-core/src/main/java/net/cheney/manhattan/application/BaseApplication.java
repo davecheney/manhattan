@@ -7,21 +7,21 @@ import java.nio.ByteBuffer;
 import java.nio.CharBuffer;
 import java.nio.charset.Charset;
 
-import org.apache.commons.lang.StringUtils;
-
 import net.cheney.cocktail.application.Application;
 import net.cheney.cocktail.application.Environment;
-import net.cheney.cocktail.application.Path;
 import net.cheney.cocktail.application.Environment.Depth;
+import net.cheney.cocktail.application.Path;
 import net.cheney.cocktail.message.Header;
 import net.cheney.cocktail.message.Response;
-import net.cheney.cocktail.message.Response.Status;
+import net.cheney.cocktail.message.Response.Status;	
 import net.cheney.manhattan.resource.Elements.MULTISTATUS;
 import net.cheney.manhattan.resource.Resource;
 import net.cheney.manhattan.resource.ResourceProvidor;
 import net.cheney.snax.SNAX;
 import net.cheney.snax.model.Document;
 import net.cheney.snax.writer.XMLWriter;
+
+import org.apache.commons.lang.StringUtils;
 
 public abstract class BaseApplication implements Application {
 	
