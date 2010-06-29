@@ -1,13 +1,12 @@
 package net.cheney.manhattan.application;
 
-import static net.cheney.manhattan.application.Responses.serverErrorNotImplemented;
-
 import java.io.File;
 
 import net.cheney.cocktail.application.Application;
 import net.cheney.cocktail.application.Environment;
 import net.cheney.cocktail.message.Request.Method;
 import net.cheney.cocktail.message.Response;
+import net.cheney.cocktail.message.Response.Status;
 import net.cheney.manhattan.resource.ResourceProvidor;
 import net.cheney.manhattan.resource.FileResourceProvidor;
 
@@ -54,9 +53,18 @@ public class DavApplication implements Application {
 			
 		case LOCK:
 			return new Lock(providor);
-		
+
+		case UNLOCK:
+			return new Unlock(providor);
+			
 		default:
-			return serverErrorNotImplemented();
+			return new Application() {
+				
+				@Override
+				public Response call(Environment env) {
+					return Response.builder(Status.SERVER_ERROR_NOT_IMPLEMENTED); 
+				}
+			};
 		}
 	}
 

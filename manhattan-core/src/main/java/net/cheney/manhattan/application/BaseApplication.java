@@ -3,7 +3,6 @@ package net.cheney.manhattan.application;
 import static net.cheney.snax.model.ProcessingInstruction.XML_DECLARATION;
 
 import java.net.URI;
-import java.nio.ByteBuffer;
 import java.nio.CharBuffer;
 import java.nio.charset.Charset;
 
@@ -30,6 +29,10 @@ public abstract class BaseApplication implements Application {
 
 	public BaseApplication(ResourceProvidor providor) {
 		this.providor = providor;
+	}
+	
+	protected ResourceProvidor providor() {
+		return this.providor;
 	}
 	
 	protected Resource resolveResource(Environment env) {
@@ -101,7 +104,7 @@ public abstract class BaseApplication implements Application {
 	}
 	
 	protected Document bodyAsXML(Environment env) {
-		CharBuffer buffer = Charset.forName("UTF-8").decode(env.body());
+		CharBuffer buffer = CHARSET_UTF_8.decode(env.body());
 		return SNAX.parse(buffer);
 	}
 }
