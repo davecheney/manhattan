@@ -48,6 +48,9 @@ public class DavApplication implements Application {
 		case DELETE:
 			return new Delete(providor);
 			
+		case HEAD:
+			return new Head(providor);
+		
 		case GET:
 			return new Get(providor);
 			

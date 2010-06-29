@@ -5,6 +5,8 @@ import static net.cheney.snax.model.ProcessingInstruction.XML_DECLARATION;
 import java.net.URI;
 import java.nio.CharBuffer;
 import java.nio.charset.Charset;
+import java.util.Locale;
+import java.util.TimeZone;
 
 import net.cheney.cocktail.application.Application;
 import net.cheney.cocktail.application.Environment;
@@ -21,11 +23,15 @@ import net.cheney.snax.model.Document;
 import net.cheney.snax.writer.XMLWriter;
 
 import org.apache.commons.lang.StringUtils;
+import org.apache.commons.lang.time.FastDateFormat;
 
 public abstract class BaseApplication implements Application {
 	
 	protected static final Charset CHARSET_UTF_8 = Charset.forName("UTF-8");
 	private final ResourceProvidor providor;
+	
+	private static final String RFC1123_DATE_FORMAT_PATTERN = "EEE, dd MMM yyyy HH:mm:ss zzz";
+	protected static final FastDateFormat RFC1123_DATE_FORMAT = FastDateFormat.getInstance(RFC1123_DATE_FORMAT_PATTERN, TimeZone.getTimeZone("GMT"), Locale.US);
 
 	public BaseApplication(ResourceProvidor providor) {
 		this.providor = providor;
@@ -106,5 +112,9 @@ public abstract class BaseApplication implements Application {
 	protected Document bodyAsXML(Environment env) {
 		CharBuffer buffer = CHARSET_UTF_8.decode(env.body());
 		return SNAX.parse(buffer);
+	}
+	
+	protected boolean overwrite(Environment env) {
+		return env.header(Header.OVERWRITE).getOnlyElementWithDefault("T").equals("T");
 	}
 }

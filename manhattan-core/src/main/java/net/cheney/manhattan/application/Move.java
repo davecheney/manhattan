@@ -4,7 +4,6 @@ import java.io.IOException;
 
 import net.cheney.cocktail.application.Environment;
 import net.cheney.cocktail.application.Path;
-import net.cheney.cocktail.message.Header;
 import net.cheney.cocktail.message.Response;
 import net.cheney.manhattan.resource.Resource;
 import net.cheney.manhattan.resource.ResourceProvidor;
@@ -28,9 +27,8 @@ public class Move extends BaseApplication {
 			return clientErrorLocked();
 		}
 		
-		boolean overwrite = env.header(Header.OVERWRITE).getOnlyElementWithDefault("T").equals("T");
+		boolean overwrite = overwrite(env);
 		
-		LOG.debug(String.format("MOVE: src[%s], dest[%s], overwrite[%b]", source, destination, overwrite));
 		try {
 			return move(source, destination, overwrite);
 		} catch (IOException e) {
@@ -39,6 +37,7 @@ public class Move extends BaseApplication {
 	}
 
 	private Response move(Resource source, Resource destination, boolean overwrite) throws IOException {
+		LOG.debug(String.format("MOVE: src[%s], dest[%s], overwrite[%b]", source, destination, overwrite));
 		if (source.exists()) {
 			if (source.isCollection()) { // source exists
 				if (destination.exists()) { // source exists and is a collection

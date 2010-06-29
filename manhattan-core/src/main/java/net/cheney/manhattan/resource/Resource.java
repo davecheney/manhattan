@@ -1,6 +1,7 @@
 package net.cheney.manhattan.resource;
 
 import java.util.Collection;
+import java.util.Date;
 
 import javax.annotation.Nonnull;
 
@@ -31,5 +32,9 @@ public interface Resource extends Lockable, Getable, Deletable, CollectionResour
 	boolean makeCollection(String name);
 
 	@Nonnull boolean isCollection();
+
+	Iterable<Lock> activeLocks();
+
+	Date lastModified();
 
 }

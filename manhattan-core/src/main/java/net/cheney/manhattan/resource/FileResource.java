@@ -270,7 +270,7 @@ public class FileResource implements Resource {
 	
 	@Override
 	public String toString() {
-		return ReflectionToStringBuilder.toString(this, ToStringStyle.SIMPLE_STYLE);
+		return ReflectionToStringBuilder.toString(this, ToStringStyle.SHORT_PREFIX_STYLE);
 	}
 
 	@Override
@@ -286,6 +286,11 @@ public class FileResource implements Resource {
 	@Override
 	public boolean hasParent() {
 		return !providor.isRoot(this);
+	}
+	
+	@Override
+	public Iterable<Lock> activeLocks() {
+		return providor.lockManager().activeLocks(this);
 	}
 
 }

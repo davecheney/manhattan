@@ -2,6 +2,7 @@ package net.cheney.manhattan.resource;
 
 import java.io.File;
 import java.net.URI;
+import java.util.Collections;
 
 import net.cheney.cocktail.application.Path;
 import net.cheney.manhattan.resource.Lock;
@@ -52,6 +53,11 @@ public class FileResourceProvidor implements ResourceProvidor {
 		@Override
 		public Lock unlock(Resource resource) {
 			return new Lock(Type.NONE, Scope.NONE, resource);
+		}
+
+		@Override
+		public Iterable<Lock> activeLocks(Resource resource) {
+			return Collections.emptyList();
 		}
 		
 	}

@@ -1,11 +1,9 @@
 package net.cheney.manhattan.application;
 
 import java.io.IOException;
-import java.net.URI;
 
 import net.cheney.cocktail.application.Environment;
 import net.cheney.cocktail.application.Path;
-import net.cheney.cocktail.message.Header;
 import net.cheney.cocktail.message.Response;
 import net.cheney.manhattan.resource.Resource;
 import net.cheney.manhattan.resource.ResourceProvidor;
@@ -17,7 +15,6 @@ public class Copy extends BaseApplication {
 
 	public Copy(ResourceProvidor providor) {
 		super(providor);
-		// TODO Auto-generated constructor stub
 	}
 
 	@Override
@@ -30,9 +27,7 @@ public class Copy extends BaseApplication {
 			return clientErrorLocked();
 		}
 		
-		boolean overwrite = env.header(Header.OVERWRITE).getOnlyElementWithDefault("T").equals("T");
-		
-		LOG.debug(String.format("COPY: src[%s], dest[%s], overwrite[%b]", source, destination, overwrite));
+		boolean overwrite = overwrite(env);
 		
 		try {
 			return copy(source, destination, overwrite);
@@ -42,6 +37,7 @@ public class Copy extends BaseApplication {
 	}
 
 	private Response copy(Resource source, Resource destination, boolean overwrite) throws IOException {
+		LOG.debug(String.format("COPY: src[%s], dest[%s], overwrite[%b]", source, destination, overwrite));
 		if (source.exists()) {
 			if (source.isCollection()) { // source exists
 				if (destination.exists()) { // source exists and is a collection
