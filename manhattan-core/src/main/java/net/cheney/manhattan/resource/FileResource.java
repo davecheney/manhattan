@@ -245,6 +245,10 @@ public class FileResource implements Resource {
 			return Elements.getContentLength(size());
 		} else if(name.equals(Property.GET_LAST_MODIFIED)) {
 			return Elements.getLastModified(new Date(file.lastModified()));
+		} else if(name.equals(RFC3441.QUOTA_AVAILABLE_BYTES)) {
+			return RFC3441.quotaAvailbleBytes(providor.quotaAvailbleBytes());
+		} else if(name.equals(RFC3441.QUOTA_USED_BYTES)) {
+			return RFC3441.quotaUsedBytes(providor.quotaUsedBytes());
 		}
 		return null;
 	}

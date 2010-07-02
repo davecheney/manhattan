@@ -11,5 +11,6 @@ public final class Property {
 	public static final QName CREATION_DATE = QName.valueOf(DAV_NAMESPACE, "creationdate");
 	public static final QName DISPLAY_NAME = QName.valueOf(DAV_NAMESPACE, "displayname");
 	
+	
 	private Property() { } 
 }

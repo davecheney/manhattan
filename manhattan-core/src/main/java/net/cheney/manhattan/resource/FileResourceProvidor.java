@@ -70,4 +70,12 @@ public class FileResourceProvidor implements ResourceProvidor {
 		return fileResource.file().equals(root);
 	}
 
+	public long quotaUsedBytes() {
+		return root.getTotalSpace() - quotaAvailbleBytes();
+	}
+
+	public long quotaAvailbleBytes() {
+		return root.getUsableSpace();
+	}
+
 }
