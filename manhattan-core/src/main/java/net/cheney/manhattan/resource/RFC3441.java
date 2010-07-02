@@ -1,6 +1,6 @@
 package net.cheney.manhattan.resource;
 
-import static net.cheney.manhattan.resource.Elements.DAV_NAMESPACE;
+import static net.cheney.manhattan.resource.RFC4918.DAV_NAMESPACE;
 import net.cheney.snax.model.Element;
 import net.cheney.snax.model.QName;
 import net.cheney.snax.model.Text;

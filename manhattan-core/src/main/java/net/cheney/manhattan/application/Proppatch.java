@@ -3,10 +3,10 @@ package net.cheney.manhattan.application;
 import net.cheney.cocktail.application.Environment;
 import net.cheney.cocktail.message.Response;
 import net.cheney.cocktail.message.Response.Status;
-import net.cheney.manhattan.resource.Elements;
-import net.cheney.manhattan.resource.Elements.MULTISTATUS;
-import net.cheney.manhattan.resource.Elements.PROPSTAT;
-import net.cheney.manhattan.resource.Elements.RESPONSE;
+import net.cheney.manhattan.resource.RFC4918;
+import net.cheney.manhattan.resource.RFC4918.MULTISTATUS;
+import net.cheney.manhattan.resource.RFC4918.PROPSTAT;
+import net.cheney.manhattan.resource.RFC4918.RESPONSE;
 import net.cheney.manhattan.resource.ResourceProvidor;
 import net.cheney.snax.model.Document;
 import net.cheney.snax.model.Element;
@@ -30,10 +30,10 @@ public class Proppatch extends BaseApplication {
 			return clientErrorBadRequest();
 		}
 		Element propertyUpdate = document.rootElement();
-		Iterable<Element> sets = propertyUpdate.getChildren(Elements.SET);
-		Iterable<Element> removes = propertyUpdate.getChildren(Elements.REMOVE);
-		RESPONSE response = Elements.response(Elements.href(env.path()), Iterables.concat(set(sets), remove(removes)));
-		MULTISTATUS multistatus = Elements.multistatus(response);
+		Iterable<Element> sets = propertyUpdate.getChildren(RFC4918.SET);
+		Iterable<Element> removes = propertyUpdate.getChildren(RFC4918.REMOVE);
+		RESPONSE response = RFC4918.response(RFC4918.href(env.path()), Iterables.concat(set(sets), remove(removes)));
+		MULTISTATUS multistatus = RFC4918.multistatus(response);
 		return successMultiStatus(multistatus);
 	}
 
@@ -62,14 +62,14 @@ public class Proppatch extends BaseApplication {
 	}
 
 	private PROPSTAT set(Element set) {
-		Element prop = set.getChildren(Elements.PROP).first().childElements().first();
-		return Elements.propertyStatus(Elements.prop(new Element(prop.qname())), Status.SUCCESS_OK);
+		Element prop = set.getChildren(RFC4918.PROP).first().childElements().first();
+		return RFC4918.propertyStatus(RFC4918.prop(new Element(prop.qname())), Status.SUCCESS_OK);
 	}
 
 
 	private PROPSTAT remove(Element remove) {
-		Element prop = remove.getChildren(Elements.PROP).first().childElements().first();
-		return Elements.propertyStatus(Elements.prop(new Element(prop.qname())), Status.SUCCESS_OK);
+		Element prop = remove.getChildren(RFC4918.PROP).first().childElements().first();
+		return RFC4918.propertyStatus(RFC4918.prop(new Element(prop.qname())), Status.SUCCESS_OK);
 	}
 
 }

@@ -12,13 +12,13 @@ public final class Lock {
 		SHARED {
 			@Override
 			public Element toXML() {
-				return new Element(QName.valueOf(Elements.DAV_NAMESPACE, "shared"));
+				return new Element(QName.valueOf(RFC4918.DAV_NAMESPACE, "shared"));
 			} 
 		},
 		EXCLUSIVE {
 			@Override
 			public Element toXML() {
-				return new Element(QName.valueOf(Elements.DAV_NAMESPACE, "exclusive"));
+				return new Element(QName.valueOf(RFC4918.DAV_NAMESPACE, "exclusive"));
 			} 
 		};
 		
@@ -32,13 +32,13 @@ public final class Lock {
 		READ {
 			@Override
 			public Element toXML() {
-				return new Element(QName.valueOf(Elements.DAV_NAMESPACE, "read"));
+				return new Element(QName.valueOf(RFC4918.DAV_NAMESPACE, "read"));
 			} 
 		},
 		WRITE {
 			@Override
 			public Element toXML() {
-				return new Element(QName.valueOf(Elements.DAV_NAMESPACE, "write"));
+				return new Element(QName.valueOf(RFC4918.DAV_NAMESPACE, "write"));
 			} 
 		};
 

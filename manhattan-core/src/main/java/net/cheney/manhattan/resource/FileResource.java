@@ -16,7 +16,7 @@ import java.util.List;
 
 import net.cheney.cocktail.message.Request.Method;
 import net.cheney.manhattan.resource.CollectionResource;
-import net.cheney.manhattan.resource.Elements;
+import net.cheney.manhattan.resource.RFC4918;
 import net.cheney.manhattan.resource.Lock;
 import net.cheney.manhattan.resource.Lock.Scope;
 import net.cheney.manhattan.resource.Lock.Type;
@@ -238,13 +238,13 @@ public class FileResource implements Resource {
 	@Override
 	public Element property(QName name) {
 		if(name.equals(Property.DISPLAY_NAME)) {
-			return Elements.displayName(name());
+			return RFC4918.displayName(name());
 		} else if(name.equals(Property.RESOURCE_TYPE)) {
-			return Elements.resourceType(isCollection());
+			return RFC4918.resourceType(isCollection());
 		} else if(name.equals(Property.GET_CONTENT_LENGTH)) {
-			return Elements.getContentLength(size());
+			return RFC4918.getContentLength(size());
 		} else if(name.equals(Property.GET_LAST_MODIFIED)) {
-			return Elements.getLastModified(new Date(file.lastModified()));
+			return RFC4918.getLastModified(new Date(file.lastModified()));
 		} else if(name.equals(RFC3441.QUOTA_AVAILABLE_BYTES)) {
 			return RFC3441.quotaAvailbleBytes(providor.quotaAvailbleBytes());
 		} else if(name.equals(RFC3441.QUOTA_USED_BYTES)) {

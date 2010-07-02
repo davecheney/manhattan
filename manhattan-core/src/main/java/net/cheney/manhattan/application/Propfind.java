@@ -1,11 +1,11 @@
 package net.cheney.manhattan.application;
 
 import static com.google.common.collect.Lists.newArrayList;
-import static net.cheney.manhattan.resource.Elements.href;
-import static net.cheney.manhattan.resource.Elements.multistatus;
-import static net.cheney.manhattan.resource.Elements.prop;
-import static net.cheney.manhattan.resource.Elements.propertyStatus;
-import static net.cheney.manhattan.resource.Elements.response;
+import static net.cheney.manhattan.resource.RFC4918.href;
+import static net.cheney.manhattan.resource.RFC4918.multistatus;
+import static net.cheney.manhattan.resource.RFC4918.prop;
+import static net.cheney.manhattan.resource.RFC4918.propertyStatus;
+import static net.cheney.manhattan.resource.RFC4918.response;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -16,9 +16,9 @@ import net.cheney.cocktail.application.Environment;
 import net.cheney.cocktail.application.Environment.Depth;
 import net.cheney.cocktail.message.Response;
 import net.cheney.cocktail.message.Response.Status;
-import net.cheney.manhattan.resource.Elements;
-import net.cheney.manhattan.resource.Elements.PROPSTAT;
-import net.cheney.manhattan.resource.Elements.RESPONSE;
+import net.cheney.manhattan.resource.RFC4918;
+import net.cheney.manhattan.resource.RFC4918.PROPSTAT;
+import net.cheney.manhattan.resource.RFC4918.RESPONSE;
 import net.cheney.manhattan.resource.Property;
 import net.cheney.manhattan.resource.Resource;
 import net.cheney.manhattan.resource.ResourceProvidor;
@@ -67,7 +67,7 @@ public class Propfind extends BaseApplication {
 		if(propfind == null) {
 			throw new IllegalArgumentException();
 		}
-		final Element props = propfind.getChildren(Elements.PROP).first();
+		final Element props = propfind.getChildren(RFC4918.PROP).first();
 		if (props == null || !props.hasChildren()) {
 			return ALL_PROPS;
 		} else {
@@ -80,8 +80,8 @@ public class Propfind extends BaseApplication {
 		}
 	}
 	
-	private List<Elements.RESPONSE> propfind(Iterable<QName> searchProps, Resource resource, Depth depth) {
-		List<Elements.RESPONSE> responses = new ArrayList<Elements.RESPONSE>();
+	private List<RFC4918.RESPONSE> propfind(Iterable<QName> searchProps, Resource resource, Depth depth) {
+		List<RFC4918.RESPONSE> responses = new ArrayList<RFC4918.RESPONSE>();
 		
 		responses.add(response(href(resource), getProperties(resource, searchProps)));
 		if (depth != Depth.ZERO) {

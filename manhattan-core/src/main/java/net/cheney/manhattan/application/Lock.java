@@ -1,14 +1,14 @@
 package net.cheney.manhattan.application;
 
-import static net.cheney.manhattan.resource.Elements.activeLock;
-import static net.cheney.manhattan.resource.Elements.lockDiscovery;
-import static net.cheney.manhattan.resource.Elements.prop;
+import static net.cheney.manhattan.resource.RFC4918.activeLock;
+import static net.cheney.manhattan.resource.RFC4918.lockDiscovery;
+import static net.cheney.manhattan.resource.RFC4918.prop;
 import net.cheney.cocktail.application.Environment;
 import net.cheney.cocktail.application.Environment.Depth;
 import net.cheney.cocktail.message.Header;
 import net.cheney.cocktail.message.Response;
 import net.cheney.cocktail.message.Response.Status;
-import net.cheney.manhattan.resource.Elements;
+import net.cheney.manhattan.resource.RFC4918;
 import static net.cheney.manhattan.resource.Lock.Scope;
 import static net.cheney.manhattan.resource.Lock.Type;
 import net.cheney.manhattan.resource.Resource;
@@ -30,9 +30,9 @@ public class Lock extends BaseApplication {
 		Depth depth = depth(env);
 		
 		Element lockinfo = document.childElements().first();
-		Element scope = lockinfo.getChildren(Elements.LOCK_SCOPE).first();
-		Element type = lockinfo.getChildren(Elements.LOCK_TYPE).first();
-		Element owner = lockinfo.getChildren(Elements.OWNER).first();
+		Element scope = lockinfo.getChildren(RFC4918.LOCK_SCOPE).first();
+		Element type = lockinfo.getChildren(RFC4918.LOCK_TYPE).first();
+		Element owner = lockinfo.getChildren(RFC4918.OWNER).first();
 		net.cheney.manhattan.resource.Lock lock = lock(Type.WRITE, Scope.EXCLUSIVE, resource);
 		Response.Builder builder = Response.builder(Status.SUCCESS_OK);
 		builder.header(Header.LOCK_TOKEN).add(String.format("<urn:%s>", lock.token()));

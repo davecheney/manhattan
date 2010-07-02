@@ -45,7 +45,7 @@ import org.apache.commons.lang.time.FastDateFormat;
 
 import com.google.common.collect.Iterables;
 
-public final class Elements {
+public final class RFC4918 {
 	
 	private static final FastDateFormat RFC1123_DATE_FORMAT = FastDateFormat.getInstance("EEE, dd MMM yyyy HH:mm:ss zzz", TimeZone.getTimeZone("GMT"), Locale.US);
 	
@@ -88,7 +88,7 @@ public final class Elements {
 	static final RESOURCE_TYPE RESOURCE_TYPE_RESOURCE = new RESOURCE_TYPE();
 	static final RESOURCE_TYPE RESOURCE_TYPE_COLLECTION = new RESOURCE_TYPE(new Element(COLLECTION));
 
-	private Elements() { } // yagni
+	private RFC4918() { } // yagni
 	
 	/**
 	 * Provides a name for the resource that is suitable for presentation to a user. 
