@@ -18,8 +18,6 @@
 
 package net.cheney.manhattan.resource;
 
-import java.net.URI;
-import java.net.URLEncoder;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Date;
