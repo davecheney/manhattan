@@ -175,8 +175,8 @@ public final class RFC4918 {
 		return new HREF(path);
 	}
 
-	public static PROP prop(List<Element> elements) {
-		return new PROP(elements.toArray(new Element[0]));
+	public static PROP prop(Iterable<Element> elements) {
+		return new PROP(elements);
 	}
 	
 	public static class PROP extends Element {
@@ -185,6 +185,9 @@ public final class RFC4918 {
 			super(PROP, content);
 		}
 		
+		public PROP(Iterable<? extends Node> content) {
+			super(PROP, content);
+		}
 	}
 	
 	public static PROP prop(Element... elements) {
