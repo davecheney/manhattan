@@ -1,6 +1,10 @@
 package net.cheney.manhattan.resource.api;
 
+import java.sql.Ref;
 import java.util.UUID;
+
+import org.apache.commons.lang.builder.ReflectionToStringBuilder;
+import org.apache.commons.lang.builder.ToStringStyle;
 
 import net.cheney.snax.model.Node;
 import net.cheney.snax.model.Text;
@@ -61,24 +65,29 @@ public final class Lock {
 		this.resource = resource;
 	}
 
-	private final String generateToken() {
-		return "opaquelocktoken:"+UUID.randomUUID().toString();
+	private String generateToken() {
+		return String.format("urn:uuid:%s",UUID.randomUUID());
 	}
 	
-	public final Resource resource() {
+	public Resource resource() {
 		return resource;
 	}
 	
-	public final Lock.Type type() {
+	public Lock.Type type() {
 		return type;
 	}
 	
-	public final Lock.Scope scope() {
+	public Lock.Scope scope() {
 		return scope;
 	}
 	
-	public final String token() {
+	public String token() {
 		return token;
+	}
+	
+	@Override
+	public String toString() {
+		return ReflectionToStringBuilder.toString(this, ToStringStyle.SHORT_PREFIX_STYLE);
 	}
 
 }

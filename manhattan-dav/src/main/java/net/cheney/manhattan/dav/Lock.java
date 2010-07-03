@@ -31,8 +31,10 @@ public class Lock extends RFC4918 {
 		Element owner = lockinfo.getChildren(RFC4918.OWNER).first();
 		net.cheney.manhattan.resource.api.Lock lock = lock(Type.WRITE, Scope.EXCLUSIVE, resource);
 		Response.Builder builder = Response.builder(Status.SUCCESS_OK);
-		builder.header(Header.LOCK_TOKEN).add(String.format("<urn:%s>", lock.token()));
 		Document response = new Document(prop(lockDiscovery(activeLock(lock, depth, env.path()))));
+		
+		builder.header(Header.LOCK_TOKEN).add(String.format("<%s>", lock.token()));
+		builder.header(Header.CONTENT_TYPE).add("application/xml; charset=\"utf-8\"");
 		return builder.body(CHARSET_UTF_8.encode(XMLWriter.write(response))).build();
 	}
 	
