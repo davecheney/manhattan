@@ -10,7 +10,7 @@ import net.cheney.cocktail.message.Response.Status;
 import net.cheney.manhattan.application.Delete;
 import net.cheney.manhattan.application.Get;
 import net.cheney.manhattan.application.Head;
-import net.cheney.manhattan.application.Options;
+import net.cheney.manhattan.dav.Options;
 import net.cheney.manhattan.application.Put;
 import net.cheney.manhattan.dav.Copy;
 import net.cheney.manhattan.dav.Lock;

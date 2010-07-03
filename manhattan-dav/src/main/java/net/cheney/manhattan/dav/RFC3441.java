@@ -10,6 +10,8 @@ public class RFC3441 {
 	public static final QName QUOTA_AVAILABLE_BYTES = QName.valueOf(DAV_NAMESPACE, "quota-available-bytes");
 	public static final QName QUOTA_USED_BYTES = QName.valueOf(DAV_NAMESPACE, "quota-used-bytes");
 	
+	private RFC3441() { }
+	
 	public static Element quotaUsedBytes(long quotaUsedBytes) {
 		return new Element(QUOTA_USED_BYTES, new Text(quotaUsedBytes));
 	}
