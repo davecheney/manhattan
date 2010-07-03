@@ -4,13 +4,13 @@ import java.io.File;
 
 import net.cheney.cocktail.application.Application;
 import net.cheney.cocktail.application.Environment;
-import net.cheney.cocktail.message.Request.Method;
+import net.cheney.cocktail.application.Router;
 import net.cheney.cocktail.message.Response;
 import net.cheney.cocktail.message.Response.Status;
 import net.cheney.manhattan.resource.ResourceProvidor;
 import net.cheney.manhattan.resource.FileResourceProvidor;
 
-public class DavApplication implements Application {
+public class DavApplication implements Application, Router {
 
 	private final ResourceProvidor providor;
 
@@ -19,11 +19,12 @@ public class DavApplication implements Application {
 	}
 	
 	public Response call(Environment env) {
-		return forMethod(env.method()).call(env);
+		return route(env).call(env);
 	}
-
-	private Application forMethod(Method method) {
-		switch(method) {
+	
+	@Override
+	public Application route(Environment env) {
+		switch(env.method()) {
 		case OPTIONS:
 			return new Options(providor);
 			

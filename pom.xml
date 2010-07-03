@@ -4,7 +4,7 @@
 	<parent>
 		<artifactId>cheney-base-pom</artifactId>
 		<groupId>net.cheney</groupId>
-		<version>5-SNAPSHOT</version>
+		<version>5</version>
 	</parent>
 	<groupId>net.cheney.manhattan</groupId>
 	<artifactId>manhattan</artifactId>
@@ -14,11 +14,12 @@
 
 	<properties>
 		<cocktail.version>0.1-SNAPSHOT</cocktail.version>
-		<snax.version>0.4.1-SNAPSHOT</snax.version>
+		<snax.version>0.5</snax.version>
 	</properties>
 
 	<modules>
 		<module>manhattan-example</module>
 		<module>manhattan-core</module>
+		<module>manhattan-caldav</module>
 	</modules>
 </project>
