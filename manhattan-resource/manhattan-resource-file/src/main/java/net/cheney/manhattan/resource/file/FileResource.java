@@ -169,18 +169,7 @@ public class FileResource implements Resource {
 		return Arrays.asList(Method.values());
 	}
 
-	@Override
-	public Collection<ComplianceClass> davOptions() {
-		return Arrays.asList(new ComplianceClass[] { ComplianceClass.LEVEL_1, ComplianceClass.LEVEL_2 });
-	}
-
-	public FileResourceProvidor providor() {
-		return providor;
-	}
-
-//	@Override
-	
-	public FileChannel channel() throws IOException {
+	private FileChannel channel() throws IOException {
 		return new FileInputStream(file()).getChannel();
 	}
 

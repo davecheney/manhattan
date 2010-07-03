@@ -1,8 +1,11 @@
 package net.cheney.manhattan.application;
 
+import static java.nio.charset.Charset.forName;
+import static java.util.Locale.US;
+import static java.util.TimeZone.getTimeZone;
+import static org.apache.commons.lang.time.FastDateFormat.getInstance;
+
 import java.nio.charset.Charset;
-import java.util.Locale;
-import java.util.TimeZone;
 
 import net.cheney.cocktail.application.Application;
 import net.cheney.cocktail.application.Environment;
@@ -16,9 +19,9 @@ import org.apache.commons.lang.time.FastDateFormat;
 
 public abstract class RFC2616 implements Application {
 	
-	protected static final Charset CHARSET_UTF_8 = Charset.forName("UTF-8");
+	protected static final Charset CHARSET_UTF_8 = forName("UTF-8");
 	private static final String RFC1123_DATE_FORMAT_PATTERN = "EEE, dd MMM yyyy HH:mm:ss zzz";
-	protected static final FastDateFormat RFC1123_DATE_FORMAT = FastDateFormat.getInstance(RFC1123_DATE_FORMAT_PATTERN, TimeZone.getTimeZone("GMT"), Locale.US);
+	protected static final FastDateFormat RFC1123_DATE_FORMAT = getInstance(RFC1123_DATE_FORMAT_PATTERN, getTimeZone("GMT"), US);
 
 	private final ResourceProvidor providor;
 
