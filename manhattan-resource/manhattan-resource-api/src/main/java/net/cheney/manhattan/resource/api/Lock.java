@@ -2,51 +2,20 @@ package net.cheney.manhattan.resource.api;
 
 import java.util.UUID;
 
-import net.cheney.manhattan.dav.RFC4918;
-import net.cheney.snax.model.Element;
-import net.cheney.snax.model.QName;
-
 public final class Lock {
 
 	public enum Scope {	
 		NONE, 
-		SHARED {
-			@Override
-			public Element toXML() {
-				return new Element(QName.valueOf(RFC4918.DAV_NAMESPACE, "shared"));
-			} 
-		},
-		EXCLUSIVE {
-			@Override
-			public Element toXML() {
-				return new Element(QName.valueOf(RFC4918.DAV_NAMESPACE, "exclusive"));
-			} 
-		};
+		SHARED,
+		EXCLUSIVE;
 		
-		public Element toXML() {
-			return null;
-		}	
 	}
 	
 	public enum Type { 
 		NONE, 
-		READ {
-			@Override
-			public Element toXML() {
-				return new Element(QName.valueOf(RFC4918.DAV_NAMESPACE, "read"));
-			} 
-		},
-		WRITE {
-			@Override
-			public Element toXML() {
-				return new Element(QName.valueOf(RFC4918.DAV_NAMESPACE, "write"));
-			} 
-		};
+		READ,
+		WRITE;
 
-		public Element toXML() {
-			return null;
-		}	 
-	
 	}
 	
 	private final Type type;
