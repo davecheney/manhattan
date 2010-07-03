@@ -20,6 +20,8 @@ package net.cheney.manhattan.dav;
 
 import static net.cheney.snax.model.ProcessingInstruction.XML_DECLARATION;
 
+import java.net.URI;
+import java.nio.CharBuffer;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Date;
@@ -30,8 +32,10 @@ import java.util.TimeZone;
 import javax.activation.MimeType;
 
 import net.cheney.cocktail.application.Environment.Depth;
+import net.cheney.cocktail.application.Environment;
 import net.cheney.cocktail.application.Path;
 import net.cheney.cocktail.message.Response.Status;
+import net.cheney.cocktail.message.Header;
 import net.cheney.cocktail.message.Response;
 import net.cheney.cocktail.message.Version;
 import net.cheney.manhattan.application.RFC2616;
@@ -40,6 +44,7 @@ import net.cheney.manhattan.resource.api.Lock.Scope;
 import net.cheney.manhattan.resource.api.Lock.Type;
 import net.cheney.manhattan.resource.api.Resource;
 import net.cheney.manhattan.resource.api.ResourceProvidor;
+import net.cheney.snax.SNAX;
 import net.cheney.snax.model.Document;
 import net.cheney.snax.model.Element;
 import net.cheney.snax.model.Namespace;
@@ -48,6 +53,7 @@ import net.cheney.snax.model.QName;
 import net.cheney.snax.model.Text;
 import net.cheney.snax.writer.XMLWriter;
 
+import org.apache.commons.lang.StringUtils;
 import org.apache.commons.lang.time.FastDateFormat;
 
 import com.google.common.collect.Iterables;
@@ -358,6 +364,26 @@ public abstract class RFC4918 extends RFC2616 {
 
 	public static Element collection() {
 		return new Element(COLLECTION);
+	}
+	
+	protected Document bodyAsXML(Environment env) {
+		CharBuffer buffer = CHARSET_UTF_8.decode(env.body());
+		return SNAX.parse(buffer);
+	}
+	
+	protected Depth depth(Environment env) {
+		return Depth.parse(env.header(Header.DEPTH).getOnlyElementWithDefault(""), Depth.INFINITY);
+	}
+	
+	protected URI destination(Environment env) {
+		// TODO destination can contain "," 
+		// join it just in case
+		String dest = StringUtils.join(env.header(Header.DESTINATION).iterator(),',');
+		return URI.create(dest);
+	}
+	
+	protected boolean overwrite(Environment env) {
+		return env.header(Header.OVERWRITE).getOnlyElementWithDefault("T").equals("T");
 	}
 	
 }

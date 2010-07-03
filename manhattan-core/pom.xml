@@ -17,10 +17,6 @@
 			<version>${cocktail.version}</version>
 		</dependency>
 		<dependency>
-			<groupId>commons-io</groupId>
-			<artifactId>commons-io</artifactId>
-		</dependency>
-		<dependency>
 			<groupId>net.cheney.manhattan</groupId>
 			<artifactId>manhattan-resource-api</artifactId>
 			<version>0.1-SNAPSHOT</version>
