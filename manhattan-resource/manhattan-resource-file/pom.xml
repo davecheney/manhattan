@@ -2,20 +2,14 @@
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 	<parent>
-		<artifactId>manhattan</artifactId>
+		<artifactId>manhattan-resource</artifactId>
 		<groupId>net.cheney.manhattan</groupId>
 		<version>0.1-SNAPSHOT</version>
 	</parent>
 	<groupId>net.cheney.manhattan</groupId>
-	<artifactId>manhattan-core</artifactId>
+	<artifactId>manhattan-resource-file</artifactId>
 	<version>0.1-SNAPSHOT</version>
-
 	<dependencies>
-		<dependency>
-			<groupId>net.cheney.cocktail</groupId>
-			<artifactId>cocktail-core</artifactId>
-			<version>${cocktail.version}</version>
-		</dependency>
 		<dependency>
 			<groupId>commons-io</groupId>
 			<artifactId>commons-io</artifactId>
@@ -23,6 +17,11 @@
 		<dependency>
 			<groupId>net.cheney.manhattan</groupId>
 			<artifactId>manhattan-resource-api</artifactId>
+			<version>0.1-SNAPSHOT</version>
+		</dependency>
+		<dependency>
+			<groupId>net.cheney.manhattan</groupId>
+			<artifactId>manhatten-dav</artifactId>
 			<version>0.1-SNAPSHOT</version>
 		</dependency>
 	</dependencies>

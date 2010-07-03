@@ -5,10 +5,10 @@ import java.nio.ByteBuffer;
 
 import net.cheney.cocktail.application.Environment;
 import net.cheney.cocktail.message.Response;
-import net.cheney.manhattan.resource.Resource;
-import net.cheney.manhattan.resource.ResourceProvidor;
+import net.cheney.manhattan.resource.api.Resource;
+import net.cheney.manhattan.resource.api.ResourceProvidor;
 
-public class Put extends BaseApplication {
+public class Put extends RFC2616 {
 
 	public Put(ResourceProvidor providor) {
 		super(providor);

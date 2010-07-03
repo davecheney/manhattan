@@ -6,7 +6,7 @@ import java.net.InetSocketAddress;
 
 import net.cheney.cocktail.application.Application;
 import net.cheney.cocktail.httpsimple.HttpServer;
-import net.cheney.manhattan.application.DavApplication;
+import net.cheney.manhattan.dav.DavApplication;
 
 import org.apache.log4j.BasicConfigurator;
 

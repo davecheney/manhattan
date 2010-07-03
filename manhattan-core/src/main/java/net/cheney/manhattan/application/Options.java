@@ -5,10 +5,10 @@ import net.cheney.cocktail.message.Header;
 import net.cheney.cocktail.message.Request.Method;
 import net.cheney.cocktail.message.Response;
 import net.cheney.cocktail.message.Response.Status;
-import net.cheney.manhattan.resource.Resource;
-import net.cheney.manhattan.resource.ResourceProvidor;
+import net.cheney.manhattan.resource.api.Resource;
+import net.cheney.manhattan.resource.api.ResourceProvidor;
 
-public class Options extends BaseApplication {
+public class Options extends RFC2616 {
 
 	public Options(ResourceProvidor providor) {
 		super(providor);

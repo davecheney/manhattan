@@ -11,7 +11,7 @@
   <dependencies>
   	<dependency>
   		<groupId>net.cheney.manhattan</groupId>
-  		<artifactId>manhattan-core</artifactId>
+  		<artifactId>manhattan-dav</artifactId>
   		<version>0.1-SNAPSHOT</version>
   	</dependency>
   </dependencies>

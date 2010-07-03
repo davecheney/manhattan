@@ -4,10 +4,10 @@ import java.io.IOException;
 
 import net.cheney.cocktail.application.Environment;
 import net.cheney.cocktail.message.Response;
-import net.cheney.manhattan.resource.Resource;
-import net.cheney.manhattan.resource.ResourceProvidor;
+import net.cheney.manhattan.resource.api.Resource;
+import net.cheney.manhattan.resource.api.ResourceProvidor;
 
-public class Delete extends BaseApplication {
+public class Delete extends RFC2616 {
 
 	public Delete(ResourceProvidor providor) {
 		super(providor);

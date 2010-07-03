@@ -4,7 +4,7 @@ import net.cheney.cocktail.application.Environment;
 import net.cheney.cocktail.message.Header;
 import net.cheney.cocktail.message.Response;
 import net.cheney.cocktail.message.Response.Builder;
-import net.cheney.manhattan.resource.ResourceProvidor;
+import net.cheney.manhattan.resource.api.ResourceProvidor;
 
 public class Head extends Get {
 

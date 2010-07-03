@@ -7,22 +7,18 @@
 		<version>0.1-SNAPSHOT</version>
 	</parent>
 	<groupId>net.cheney.manhattan</groupId>
-	<artifactId>manhattan-core</artifactId>
+	<artifactId>manhatten-dav</artifactId>
 	<version>0.1-SNAPSHOT</version>
 
 	<dependencies>
 		<dependency>
-			<groupId>net.cheney.cocktail</groupId>
-			<artifactId>cocktail-core</artifactId>
-			<version>${cocktail.version}</version>
-		</dependency>
-		<dependency>
-			<groupId>commons-io</groupId>
-			<artifactId>commons-io</artifactId>
+			<groupId>net.cheney.snax</groupId>
+			<artifactId>snax-core</artifactId>
+			<version>${snax.version}</version>
 		</dependency>
 		<dependency>
 			<groupId>net.cheney.manhattan</groupId>
-			<artifactId>manhattan-resource-api</artifactId>
+			<artifactId>manhattan-core</artifactId>
 			<version>0.1-SNAPSHOT</version>
 		</dependency>
 	</dependencies>

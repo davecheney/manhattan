@@ -21,5 +21,7 @@
 		<module>manhattan-example</module>
 		<module>manhattan-core</module>
 		<module>manhattan-caldav</module>
+		<module>manhatten-dav</module>
+		<module>manhattan-resource</module>
 	</modules>
 </project>
