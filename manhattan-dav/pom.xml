@@ -7,7 +7,7 @@
 		<version>0.1-SNAPSHOT</version>
 	</parent>
 	<groupId>net.cheney.manhattan</groupId>
-	<artifactId>manhatten-dav</artifactId>
+	<artifactId>manhattan-dav</artifactId>
 	<version>0.1-SNAPSHOT</version>
 
 	<dependencies>
