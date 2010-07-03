@@ -14,7 +14,7 @@
 
 	<properties>
 		<cocktail.version>0.1-SNAPSHOT</cocktail.version>
-		<snax.version>0.5</snax.version>
+		<snax.version>0.6-SNAPSHOT</snax.version>
 	</properties>
 
 	<modules>

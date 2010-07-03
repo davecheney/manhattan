@@ -1,33 +1,40 @@
 package net.cheney.manhattan.resource.api;
 
-import java.sql.Ref;
 import java.util.UUID;
 
 import org.apache.commons.lang.builder.ReflectionToStringBuilder;
 import org.apache.commons.lang.builder.ToStringStyle;
 
+import net.cheney.snax.model.Element;
+import net.cheney.snax.model.Namespace;
 import net.cheney.snax.model.Node;
-import net.cheney.snax.model.Text;
+import net.cheney.snax.model.QName;
 
 public final class Lock {
+	
+	private static final Namespace DAV_NAMESPACE = Namespace.valueOf("", "DAV:");
 	
 	public enum Scope {	
 		NONE, 
 		SHARED { 
 			@Override
 			public Node toXML() {
-				return new Text("shared");
+				return new Element(QName.valueOf(DAV_NAMESPACE, "shared"));
 			}
 		},
 		EXCLUSIVE {
 			@Override
 			public Node toXML() {
-				return new Text("exclusive");
+				return new Element(QName.valueOf(DAV_NAMESPACE, "exclusive"));
 			}
 		};
 
 		public Node toXML() {
 			return null;
+		}
+
+		public static Scope parse(Element scope) {
+			return valueOf(scope.localpart().toUpperCase());
 		}
 		
 	}
@@ -37,18 +44,22 @@ public final class Lock {
 		READ { 
 			@Override
 			public Node toXML() {
-				return new Text("exclusive");
+				return new Element(QName.valueOf(DAV_NAMESPACE, "read"));
 			}
 		},
 		WRITE { 
 			@Override
 			public Node toXML() {
-				return new Text("write");
+				return new Element(QName.valueOf(DAV_NAMESPACE, "write"));
 			}
 		};
 
 		public Node toXML() {
 			return null;
+		}
+
+		public static Type parse(Element type) {
+			return valueOf(type.localpart().toUpperCase());
 		}
 
 	}

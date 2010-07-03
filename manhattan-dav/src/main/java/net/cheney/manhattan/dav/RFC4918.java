@@ -76,6 +76,7 @@ public abstract class RFC4918 extends RFC2616 {
 		RESPONSE = QName.valueOf(DAV_NAMESPACE, "response"),
 		DEPTH = QName.valueOf(DAV_NAMESPACE, "depth"),
 		LOCK_TYPE = QName.valueOf(DAV_NAMESPACE, "locktype"),
+		TIMEOUT = QName.valueOf(DAV_NAMESPACE, "timeout"),
 		LOCK_SCOPE = QName.valueOf(DAV_NAMESPACE, "lockscope"),
 		LOCK_ENTRY = QName.valueOf(DAV_NAMESPACE, "lockentry"),
 		LOCK_ROOT = QName.valueOf(DAV_NAMESPACE, "lockroot"),
@@ -275,6 +276,7 @@ public abstract class RFC4918 extends RFC2616 {
 
 		public ACTIVE_LOCK(LOCK_TYPE type, LOCK_SCOPE scope, DEPTH depth, LOCK_TOKEN token, LOCK_ROOT root) {
 			super(ACTIVE_LOCK, type, scope, depth, token, root);
+			// new Element(OWNER, new Text("litmus test suite")), new Element(TIMEOUT, new Text("Second-3600"))
 		}
 		
 	}
@@ -284,7 +286,7 @@ public abstract class RFC4918 extends RFC2616 {
 			locktype(lock.type()),
 			lockscope(lock.scope()),
 			depth(depth), 
-			lockToken(lock.token()),
+			lockToken(new Element(HREF, new Text(lock.token()))),
 			lockRoot(href(path)));
 	}
 	
@@ -312,13 +314,13 @@ public abstract class RFC4918 extends RFC2616 {
 
 	public static class LOCK_TOKEN extends Element {
 
-		public LOCK_TOKEN(String token) {
-			super(LOCK_TOKEN, new Text(token));
+		public LOCK_TOKEN(Element token) {
+			super(LOCK_TOKEN, token);
 		}
 		
 	}
 	
-	private static LOCK_TOKEN lockToken(String token) {
+	private static LOCK_TOKEN lockToken(Element token) {
 		return new LOCK_TOKEN(token);
 	}
 	

@@ -26,10 +26,10 @@ public class Lock extends RFC4918 {
 		Depth depth = depth(env);
 		
 		Element lockinfo = document.childElements().first();
-		Element scope = lockinfo.getChildren(RFC4918.LOCK_SCOPE).first();
-		Element type = lockinfo.getChildren(RFC4918.LOCK_TYPE).first();
-		Element owner = lockinfo.getChildren(RFC4918.OWNER).first();
-		net.cheney.manhattan.resource.api.Lock lock = lock(Type.WRITE, Scope.EXCLUSIVE, resource);
+		Element scope = lockinfo.getChildren(RFC4918.LOCK_SCOPE).first().childElements().first();
+		Element type = lockinfo.getChildren(RFC4918.LOCK_TYPE).first().childElements().first();
+//		Element owner = lockinfo.getChildren(RFC4918.OWNER).first();
+		net.cheney.manhattan.resource.api.Lock lock = lock(Type.parse(type), Scope.parse(scope), resource);
 		Response.Builder builder = Response.builder(Status.SUCCESS_OK);
 		Document response = new Document(prop(lockDiscovery(activeLock(lock, depth, env.path()))));
 		
