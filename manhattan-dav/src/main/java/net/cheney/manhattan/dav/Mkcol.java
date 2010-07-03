@@ -4,10 +4,10 @@ import java.io.IOException;
 
 import net.cheney.cocktail.application.Environment;
 import net.cheney.cocktail.message.Response;
-import net.cheney.manhattan.resource.Resource;
+import net.cheney.manhattan.resource.api.Resource;
 import net.cheney.manhattan.resource.api.ResourceProvidor;
 
-public class Mkcol extends BaseApplication {
+public class Mkcol extends RFC4918 {
 
 	public Mkcol(ResourceProvidor providor) {
 		super(providor);

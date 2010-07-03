@@ -5,12 +5,12 @@ import java.io.IOException;
 import net.cheney.cocktail.application.Environment;
 import net.cheney.cocktail.application.Path;
 import net.cheney.cocktail.message.Response;
-import net.cheney.manhattan.resource.Resource;
+import net.cheney.manhattan.resource.api.Resource;
 import net.cheney.manhattan.resource.api.ResourceProvidor;
 
 import org.apache.log4j.Logger;
 
-public class Move extends BaseApplication {
+public class Move extends RFC4918 {
 	private static final Logger LOG = Logger.getLogger(Move.class);
 
 	public Move(ResourceProvidor providor) {

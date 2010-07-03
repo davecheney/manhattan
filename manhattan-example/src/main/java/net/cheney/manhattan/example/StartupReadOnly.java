@@ -9,7 +9,6 @@ import net.cheney.cocktail.application.Environment;
 import net.cheney.cocktail.httpsimple.HttpServer;
 import net.cheney.cocktail.message.Header;
 import net.cheney.cocktail.message.Response;
-import net.cheney.manhattan.dav.DavApplication;
 
 import org.apache.log4j.BasicConfigurator;
 

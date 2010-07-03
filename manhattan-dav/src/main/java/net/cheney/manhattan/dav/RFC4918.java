@@ -18,7 +18,6 @@
 
 package net.cheney.manhattan.dav;
 
-import static net.cheney.manhattan.dav.RFC4918.DAV_NAMESPACE;
 import static net.cheney.snax.model.ProcessingInstruction.XML_DECLARATION;
 
 import java.util.ArrayList;
@@ -35,6 +34,7 @@ import net.cheney.cocktail.application.Path;
 import net.cheney.cocktail.message.Response.Status;
 import net.cheney.cocktail.message.Response;
 import net.cheney.cocktail.message.Version;
+import net.cheney.manhattan.application.RFC2616;
 import net.cheney.manhattan.resource.api.Lock;
 import net.cheney.manhattan.resource.api.Lock.Scope;
 import net.cheney.manhattan.resource.api.Lock.Type;

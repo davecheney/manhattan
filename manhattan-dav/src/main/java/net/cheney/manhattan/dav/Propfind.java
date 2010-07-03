@@ -1,7 +1,6 @@
 package net.cheney.manhattan.dav;
 
 import static com.google.common.collect.Lists.newArrayList;
-import static net.cheney.manhattan.dav.RFC4918.depth;
 
 import java.util.ArrayList;
 import java.util.List;

@@ -1,4 +1,4 @@
-package net.cheney.manhattan.dav;
+package net.cheney.manhattan.example;
 
 import java.io.File;
 
@@ -10,9 +10,15 @@ import net.cheney.cocktail.message.Response.Status;
 import net.cheney.manhattan.application.Delete;
 import net.cheney.manhattan.application.Get;
 import net.cheney.manhattan.application.Head;
-import net.cheney.manhattan.application.Lock;
 import net.cheney.manhattan.application.Options;
 import net.cheney.manhattan.application.Put;
+import net.cheney.manhattan.dav.Copy;
+import net.cheney.manhattan.dav.Lock;
+import net.cheney.manhattan.dav.Mkcol;
+import net.cheney.manhattan.dav.Move;
+import net.cheney.manhattan.dav.Propfind;
+import net.cheney.manhattan.dav.Proppatch;
+import net.cheney.manhattan.dav.Unlock;
 import net.cheney.manhattan.resource.api.ResourceProvidor;
 import net.cheney.manhattan.resource.file.FileResourceProvidor;
 

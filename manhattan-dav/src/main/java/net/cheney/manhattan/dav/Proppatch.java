@@ -3,7 +3,6 @@ package net.cheney.manhattan.dav;
 import net.cheney.cocktail.application.Environment;
 import net.cheney.cocktail.message.Response;
 import net.cheney.cocktail.message.Response.Status;
-import net.cheney.manhattan.application.BaseApplication;
 import net.cheney.manhattan.resource.api.ResourceProvidor;
 import net.cheney.snax.model.Document;
 import net.cheney.snax.model.Element;
@@ -13,7 +12,7 @@ import org.apache.log4j.Logger;
 import com.google.common.base.Function;
 import com.google.common.collect.Iterables;
 
-public class Proppatch extends BaseApplication {
+public class Proppatch extends RFC4918 {
 	private static final Logger LOG = Logger.getLogger(Proppatch.class);
 
 	public Proppatch(ResourceProvidor providor) {

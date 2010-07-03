@@ -29,15 +29,15 @@ public class Lock extends RFC4918 {
 		Element scope = lockinfo.getChildren(RFC4918.LOCK_SCOPE).first();
 		Element type = lockinfo.getChildren(RFC4918.LOCK_TYPE).first();
 		Element owner = lockinfo.getChildren(RFC4918.OWNER).first();
-		net.cheney.manhattan.resource.Lock lock = lock(Type.WRITE, Scope.EXCLUSIVE, resource);
+		net.cheney.manhattan.resource.api.Lock lock = lock(Type.WRITE, Scope.EXCLUSIVE, resource);
 		Response.Builder builder = Response.builder(Status.SUCCESS_OK);
 		builder.header(Header.LOCK_TOKEN).add(String.format("<urn:%s>", lock.token()));
 		Document response = new Document(prop(lockDiscovery(activeLock(lock, depth, env.path()))));
 		return builder.body(CHARSET_UTF_8.encode(XMLWriter.write(response))).build();
 	}
 	
-	private net.cheney.manhattan.resource.Lock lock(net.cheney.manhattan.resource.Lock.Type type, net.cheney.manhattan.resource.Lock.Scope scope, Resource resource) {
-		return new net.cheney.manhattan.resource.Lock(type, scope, resource);
+	private net.cheney.manhattan.resource.api.Lock lock(net.cheney.manhattan.resource.api.Lock.Type type, net.cheney.manhattan.resource.api.Lock.Scope scope, Resource resource) {
+		return new net.cheney.manhattan.resource.api.Lock(type, scope, resource);
 	}
 
 }

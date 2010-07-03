@@ -2,19 +2,50 @@ package net.cheney.manhattan.resource.api;
 
 import java.util.UUID;
 
-public final class Lock {
+import net.cheney.snax.model.Node;
+import net.cheney.snax.model.Text;
 
+public final class Lock {
+	
 	public enum Scope {	
 		NONE, 
-		SHARED,
-		EXCLUSIVE;
+		SHARED { 
+			@Override
+			public Node toXML() {
+				return new Text("shared");
+			}
+		},
+		EXCLUSIVE {
+			@Override
+			public Node toXML() {
+				return new Text("exclusive");
+			}
+		};
+
+		public Node toXML() {
+			return null;
+		}
 		
 	}
 	
 	public enum Type { 
 		NONE, 
-		READ,
-		WRITE;
+		READ { 
+			@Override
+			public Node toXML() {
+				return new Text("exclusive");
+			}
+		},
+		WRITE { 
+			@Override
+			public Node toXML() {
+				return new Text("write");
+			}
+		};
+
+		public Node toXML() {
+			return null;
+		}
 
 	}
 	
