@@ -180,7 +180,7 @@ public class FileResource implements Resource {
 
 	@Override
 	public boolean isLocked() {
-		return false;
+		return providor.lockManager().isLocked(this);
 	}
 
 	@Override

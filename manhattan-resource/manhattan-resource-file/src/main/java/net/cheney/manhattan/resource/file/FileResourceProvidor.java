@@ -1,13 +1,8 @@
 package net.cheney.manhattan.resource.file;
 
 import java.io.File;
-import java.net.URI;
-import java.util.Collections;
 
 import net.cheney.cocktail.application.Path;
-import net.cheney.manhattan.resource.api.Lock;
-import net.cheney.manhattan.resource.api.Lock.Scope;
-import net.cheney.manhattan.resource.api.Lock.Type;
 import net.cheney.manhattan.resource.api.LockManager;
 import net.cheney.manhattan.resource.api.Resource;
 import net.cheney.manhattan.resource.api.ResourceProvidor;
@@ -17,13 +12,13 @@ public class FileResourceProvidor implements ResourceProvidor {
 	private final File root;
 	private final LockManager lockManager;
 
-	public FileResourceProvidor(String root) {
-		this(new File(root));
+	public FileResourceProvidor(LockManager lockManager, String root) {
+		this(lockManager, new File(root));
 	}
 	
-	public FileResourceProvidor(File root) {
+	public FileResourceProvidor(LockManager lockManager, File root) {
 		this.root = root;
-		this.lockManager = new FileResourceLockManager();
+		this.lockManager = lockManager;
 	}
 	
 	public final Resource resolveResource(Path path) {
@@ -38,33 +33,9 @@ public class FileResourceProvidor implements ResourceProvidor {
 		return lockManager;
 	}
 	
-	private class FileResourceLockManager implements LockManager {
-		
-		@Override
-		public boolean isLocked(Resource resource) {
-			return false;
-		}
-
-		@Override
-		public Lock lock(Resource resource, Type type, Scope scope) {
-			return new Lock(type, scope, resource);
-		}
-
-		@Override
-		public Lock unlock(Resource resource) {
-			return new Lock(Type.NONE, Scope.NONE, resource);
-		}
-
-		@Override
-		public Iterable<Lock> activeLocks(Resource resource) {
-			return Collections.emptyList();
-		}
-		
-	}
-
-	public URI relativizeResource(Resource resource) {
-		return root.toURI().relativize(((FileResource) resource).file().toURI());
-	}
+//	public URI relativizeResource(Resource resource) {
+//		return root.toURI().relativize(((FileResource) resource).file().toURI());
+//	}
 
 	public boolean isRoot(FileResource fileResource) {
 		return fileResource.file().equals(root);

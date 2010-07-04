@@ -7,6 +7,8 @@ import javax.annotation.Nonnegative;
 import javax.annotation.Nonnull;
 
 public interface Getable {
+	
+	@Nonnull String name();
 
 	@Nonnegative long contentLength();
 

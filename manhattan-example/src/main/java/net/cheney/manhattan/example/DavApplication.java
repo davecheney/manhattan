@@ -21,13 +21,14 @@ import net.cheney.manhattan.dav.Proppatch;
 import net.cheney.manhattan.dav.Unlock;
 import net.cheney.manhattan.resource.api.ResourceProvidor;
 import net.cheney.manhattan.resource.file.FileResourceProvidor;
+import net.cheney.manhattan.resource.file.InMemoryLockManager;
 
 public class DavApplication implements Application, Router {
 
 	private final ResourceProvidor providor;
 
 	public DavApplication(File root) {
-		this.providor = new FileResourceProvidor(root);
+		this.providor = new FileResourceProvidor(new InMemoryLockManager(), root);
 	}
 	
 	public Response call(Environment env) {

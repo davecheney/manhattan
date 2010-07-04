@@ -11,8 +11,6 @@ import net.cheney.snax.model.QName;
 
 public interface Resource extends Lockable, Getable, Deletable, CollectionResource, Moveable, Copyable {
 	
-	@Nonnull String name();
-	
 	boolean exists();
 	
 	@Nonnull Collection<Method> supportedMethods();
