@@ -57,12 +57,8 @@ public class Lock extends RFC4918 {
 
 	private String ifLockToken(Environment env) {
 		String token = env.header(Header.IF).getOnlyElement();
-		Matcher matcher = Pattern.compile("^\\(<(.+)>\\)$").matcher(token);
-		if(matcher.find()) {
-			return matcher.group();
-		} else {
-			throw new IllegalArgumentException(matcher.toString());
-		}
+		token = token.substring(token.indexOf('<') + 1, token.indexOf('>'));
+		return token;
 	}
 
 	private Response lock(Environment env) {
