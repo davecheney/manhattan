@@ -23,7 +23,7 @@ public class Copy extends RFC4918 {
 		
 		final Resource destination = resolveResource(Path.fromURI(destination(env)));
 		
-		if (source.isLocked() || destination.isLocked()) {
+		if (destination.isLocked()) {
 			return clientErrorLocked();
 		}
 		
