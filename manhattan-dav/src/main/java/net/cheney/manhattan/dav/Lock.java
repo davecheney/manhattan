@@ -1,8 +1,7 @@
 package net.cheney.manhattan.dav;
 
-import java.nio.channels.IllegalSelectorException;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
+import java.io.IOException;
+import java.nio.ByteBuffer;
 
 import com.google.common.base.Predicate;
 import com.google.common.collect.Iterables;
@@ -63,8 +62,41 @@ public class Lock extends RFC4918 {
 
 	private Response lock(Environment env) {
 		Resource resource = resolveResource(env);
-		Depth depth = depth(env);
+		if(resource.exists()) {
+			return lockExisting(env);
+		} else {
+			try {
+				return lockNonexistant(env);
+			} catch (IOException e) {
+				return serverErrorInternal(e);
+			}
+		}
+	}
 
+	private Response lockNonexistant(Environment env) throws IOException {
+		Depth depth = depth(env);
+		Resource resource = resolveResource(env);
+		resource.parent().create(resource.name(), ByteBuffer.allocate(0));
+		
+		Document document = bodyAsXML(env);
+		
+		Element lockinfo = document.childElements().first();
+		Element scope = lockinfo.getChildren(RFC4918.LOCK_SCOPE).first().childElements().first();
+		Element type = lockinfo.getChildren(RFC4918.LOCK_TYPE).first().childElements().first();
+//		Element owner = lockinfo.getChildren(RFC4918.OWNER).first();
+		net.cheney.manhattan.resource.api.Lock lock = resource.lock(Type.parse(type), Scope.parse(scope));
+		Response.Builder builder = Response.builder(Status.SUCCESS_CREATED);
+		Document response = new Document(prop(lockDiscovery(activeLock(lock, depth, env.path()))));
+		
+		builder.header(Header.LOCK_TOKEN).add(String.format("<%s>", lock.token()));
+		builder.header(Header.CONTENT_TYPE).add("application/xml; charset=\"utf-8\"");
+		return builder.body(CHARSET_UTF_8.encode(XMLWriter.write(response))).build();
+	}
+
+	private Response lockExisting(Environment env) {
+		Depth depth = depth(env);
+		Resource resource = resolveResource(env);
+		
 		Document document = bodyAsXML(env);
 		
 		Element lockinfo = document.childElements().first();

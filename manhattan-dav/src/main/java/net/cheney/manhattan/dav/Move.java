@@ -23,7 +23,7 @@ public class Move extends RFC4918 {
 		
 		final Resource destination = resolveResource(Path.fromURI(destination(env)));
 		
-		if (destination.isLocked()) {
+		if (source.isLocked() || destination.isLocked()) {
 			return clientErrorLocked();
 		}
 		
