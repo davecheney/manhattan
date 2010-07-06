@@ -10,6 +10,7 @@ import java.nio.charset.Charset;
 import net.cheney.cocktail.application.Application;
 import net.cheney.cocktail.application.Environment;
 import net.cheney.cocktail.application.Path;
+import net.cheney.cocktail.message.Header;
 import net.cheney.cocktail.message.Response;
 import net.cheney.cocktail.message.Response.Status;	
 import net.cheney.manhattan.resource.api.Resource;
@@ -83,6 +84,11 @@ public abstract class RFC2616 implements Application {
 
 	public static Response clientErrorUnsupportedMediaType() {
 		return Response.builder(Status.CLIENT_ERROR_UNSUPPORTED_MEDIA_TYPE).build();
+	}
+	
+	protected String lockToken(Environment env) {
+		String token = env.header(Header.LOCK_TOKEN).getOnlyElementWithDefault("");
+		return token.isEmpty() ? token : token.substring(token.indexOf('<') + 1, token.indexOf('>'));
 	}
 	
 }

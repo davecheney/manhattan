@@ -13,6 +13,7 @@ import java.util.Collection;
 import java.util.Collections;
 import java.util.Date;
 import java.util.List;
+import java.util.NoSuchElementException;
 
 import net.cheney.cocktail.message.Request.Method;
 import net.cheney.manhattan.dav.RFC3441;
@@ -30,6 +31,7 @@ import org.apache.commons.lang.builder.ReflectionToStringBuilder;
 import org.apache.commons.lang.builder.ToStringStyle;
 
 import com.google.common.base.Function;
+import com.google.common.base.Predicate;
 import com.google.common.collect.Iterables;
 
 public class FileResource implements Resource {
@@ -284,6 +286,16 @@ public class FileResource implements Resource {
 	@Override
 	public Iterable<Lock> activeLocks() {
 		return providor.lockManager().activeLocks(this);
+	}
+	
+	@Override
+	public Lock activeLock(final String lockToken) throws NoSuchElementException {
+		return Iterables.find(activeLocks(), new Predicate<Lock>() { 
+			@Override
+			public boolean apply(Lock lock) {
+				return lock.token().equals(lockToken);
+			}
+		});
 	}
 
 }

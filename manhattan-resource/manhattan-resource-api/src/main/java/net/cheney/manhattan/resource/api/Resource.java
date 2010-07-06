@@ -31,4 +31,6 @@ public interface Resource extends Lockable, Getable, Deletable, CollectionResour
 
 	Date lastModified();
 
+	Lock activeLock(String lockToken);
+
 }

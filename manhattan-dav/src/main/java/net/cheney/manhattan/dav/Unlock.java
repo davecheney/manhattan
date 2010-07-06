@@ -1,7 +1,6 @@
 package net.cheney.manhattan.dav;
 
 import net.cheney.cocktail.application.Environment;
-import net.cheney.cocktail.message.Header;
 import net.cheney.cocktail.message.Response;
 import net.cheney.manhattan.resource.api.Lock;
 import net.cheney.manhattan.resource.api.Resource;
@@ -25,12 +24,5 @@ public class Unlock extends RFC4918 {
 		}
 		return successNoContent(); // TODO what is the correct status code ?
 	}
-
-	private String lockToken(Environment env) {
-		String token = env.header(Header.LOCK_TOKEN).getOnlyElement();
-		token = token.substring(token.indexOf('<') + 1, token.indexOf('>'));
-		return token;
-	}
-
 
 }

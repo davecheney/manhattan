@@ -3,6 +3,7 @@ package net.cheney.manhattan.dav;
 import net.cheney.cocktail.application.Environment;
 import net.cheney.cocktail.message.Response;
 import net.cheney.cocktail.message.Response.Status;
+import net.cheney.manhattan.resource.api.Resource;
 import net.cheney.manhattan.resource.api.ResourceProvidor;
 import net.cheney.snax.model.Document;
 import net.cheney.snax.model.Element;
@@ -21,6 +22,10 @@ public class Proppatch extends RFC4918 {
 
 	@Override
 	public Response call(Environment env) {
+		Resource resource = resolveResource(env);
+		if(resource.isLocked()) {
+			return clientErrorLocked();
+		}
 		Document document = bodyAsXML(env);
 		if(document == null) {
 			return clientErrorBadRequest();
