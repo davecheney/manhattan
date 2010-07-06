@@ -1,7 +1,5 @@
 package net.cheney.manhattan.application;
 
-import java.io.IOException;
-
 import net.cheney.cocktail.application.Environment;
 import net.cheney.cocktail.message.Header;
 import net.cheney.cocktail.message.Response;
@@ -20,7 +18,7 @@ public class Get extends RFC2616 {
 		Resource resource = resolveResource(env);
 		if(resource.exists()) {
 			if(env.header(Header.RANGE).any()) {
-				return getWithRange(resource, env);
+				return serverErrorNotImplemented();
 			} else {
 				return getWithoutRange(resource, env);
 			}
@@ -30,20 +28,7 @@ public class Get extends RFC2616 {
 	}
 
 	private Response getWithoutRange(Resource resource, Environment env) {
-		try {
-			return Response.builder(Status.SUCCESS_OK).body(resource.body()).build();
-		} catch (IOException e) {
-			return serverErrorInternal(e);
-		}
-	}
-
-	private Response getWithRange(Resource resource, Environment env) {
-		String range = env.header(Header.RANGE).getOnlyElement();
-		try {
-			return Response.builder(Status.SUCCESS_PARTIAL_CONTENT).body(resource.body()).build();
-		} catch (IOException e) {
-			return serverErrorInternal(e);
-		}
+		return Response.builder(Status.SUCCESS_OK).body(resource.file()).build();
 	}
 
 }

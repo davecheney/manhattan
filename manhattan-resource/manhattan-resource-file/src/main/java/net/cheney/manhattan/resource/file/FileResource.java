@@ -256,14 +256,6 @@ public class FileResource implements Resource {
 	}
 
 	@Override
-	public ByteBuffer body() throws IOException {
-		FileChannel channel = channel();
-		ByteBuffer buffer = channel.map(MapMode.READ_ONLY, 0, file.length());
-		channel.close();
-		return buffer;
-	}
-	
-	@Override
 	public String toString() {
 		return ReflectionToStringBuilder.toString(this, ToStringStyle.SHORT_PREFIX_STYLE);
 	}
@@ -297,5 +289,6 @@ public class FileResource implements Resource {
 			}
 		});
 	}
+	
 
 }
